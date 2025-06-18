@@ -5,6 +5,7 @@ import { Menu, Settings } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 function buildNavDropDownList(location: string): DropDownSimpleProps {
     const props = initDropDownSimpleProps
@@ -46,10 +47,31 @@ function buildNavDropDownList(location: string): DropDownSimpleProps {
 export default function Navbar() {
     const location = usePathname()
     const dropDownList = buildNavDropDownList(location);
+    const [isScrolled, setIsScrolled] = useState(false);
 
+    // Add scroll event listener
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 5) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     return (
-        <header className="fixed md:absolute w-full max-w-[1024px] shadow-md py-5 px-[2%] xl:px-0">
-            <nav className=" mx-auto flex justify-between items-center">
+        <header className={`fixed w-screen transition-all duration-300
+            ${isScrolled
+                ? 'shadow-md bg-custom-dark/95 py-4'
+                : 'bg-transparent py-5'
+            }
+        `}>
+            <nav className="container mx-auto px-4 md:px-10 flex justify-between items-center">
                 <Link href="/" className="text-xl md:text-2xl font-bold transition-colors duration-300">Digital Marketing</Link>
                 <div className="flex items-center space-x-3">
                     {/* Navigation Menu */}
@@ -58,14 +80,9 @@ export default function Navbar() {
                             <Link
                                 key={route.order}
                                 href={route.path}
-                                className="group relative inline-block font-extrabold transition-all duration-300 px-1.5"
+                                className="relative inline-block font-extrabold transition-all duration-300 px-1.5"
                             >
-                                <span className={`relative
-                                    ${location === route.path
-                                        ? 'text-custom'
-                                        : 'group-hover:text-custom'
-                                    }
-                                `}>
+                                <span className={`relative ${location === route.path ? 'text-custom' : 'hover:text-custom'}`}>
                                     {route.pageName}
                                 </span>
                                 {

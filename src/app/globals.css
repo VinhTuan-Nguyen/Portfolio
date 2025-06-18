@@ -7,6 +7,7 @@
 
 @theme {
   --color-custom: #A238FF;
+  --color-custom-dark: #222323;
 }
 
 @theme inline {

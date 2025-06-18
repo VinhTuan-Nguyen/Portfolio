@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import "./globals.css";
 import Navbar from "@/components/common/navbar";
+import Footer from "@/components/common/footer";
 
 
 const firaSans = localFont({
@@ -23,13 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`w-screen ${firaSans.className} flex justify-center`}>
-        <div className="max-w-[1024px] w-full flex justify-center">
+    <html lang="en" className={`${firaSans.className}`}>
+      <body>
+        <div className="flex flex-col min-h-screen">
           <Navbar />
-          <div className="w-full flex justify-center pt-[72]">
+          <main className="max-w-[1200px] w-full flex justify-center pt-[72]">
             {children}
-          </div>
+          </main>
+          <Footer />
         </div>
       </body>
     </html>

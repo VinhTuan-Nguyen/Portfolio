@@ -24,6 +24,7 @@ export const initDropDownSimpleProps: DropDownSimpleProps = {
   menu: {
     isDisplay: false,
     menuList: [],
+    classes: []
   }
 }
 
@@ -57,9 +58,9 @@ export default function DropDownSimple(props: DropDownSimpleProps = initDropDown
           tabIndex={-1}
           aria-orientation="vertical"
           aria-labelledby="menu-button"
-          className="absolute mt-2 origin-top-right rounded-md"
+          className={`absolute mt-2 origin-top-right`}
         >
-          <div className="absolute flex flex-col space-y-3" role="none">
+          <div className={`absolute flex flex-col space-y-3 rounded-md text-center ${props.menu.classes}`} role="none">
             {props.menu.menuList.map(item => item as React.ReactNode)}
           </div>
         </div>
