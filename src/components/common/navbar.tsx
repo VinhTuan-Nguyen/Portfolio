@@ -1,104 +1,92 @@
 'use client'
+import DropDownSimple, { DropDownSimpleProps, initDropDownSimpleProps } from "@/components/ui/dropdown-simple";
 import { PAGE_ROUTES } from "@/lib/contants/page-router";
-import { Menu, Settings, X } from "lucide-react";
+import { Menu, Settings } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
+function buildNavDropDownList(location: string): DropDownSimpleProps {
+    const props = initDropDownSimpleProps
+    // Config Button
+    props.button.icon = <Menu className="h-6 w-6" />
+    props.button.classes = ['hover:text-hover-gradient']
+
+    // Create Menu List
+    props.menu.menuList = PAGE_ROUTES.map((route, index) => (
+        <Link
+            id={`menu-item-${++index}`}
+            key={route.order}
+            href={route.path}
+            role="menuitem"
+            tabIndex={-1}
+            className="relative inline-block font-extrabold"
+        >
+            <span className={`relative px-1.5
+                ${location === route.path
+                    ? 'text-hover-gradient'
+                    : 'hover:text-hover-gradient'}
+            `}>
+                {route.pageName}
+                {location === route.path && (
+                    <Image
+                        src={`/images/svg/${route.filter}`}
+                        alt={`${route.pageName} blur effect`}
+                        fill={true}
+                        style={{ objectFit: 'cover' }}
+                        className="relative"
+                    />
+                )}
+            </span>
+        </Link>
+    ))
+    return props
+}
 
 export default function Navbar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const location = usePathname();
-
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
-    useEffect(() => {
-        setIsMenuOpen(false)
-    }, [location])
+    const location = usePathname()
+    const dropDownList = buildNavDropDownList(location);
 
     return (
-        <header className="w-full shadow-md py-5">
-            <nav className="container mx-auto px-4 md:px-6 flex justify-between items-center">
+        <header className="fixed md:absolute w-full max-w-[1024px] shadow-md py-5 px-[2%] xl:px-0">
+            <nav className=" mx-auto flex justify-between items-center">
                 <Link href="/" className="text-xl md:text-2xl font-bold transition-colors duration-300">Digital Marketing</Link>
-                {/* Navigation Menu */}
-                <div className="hidden md:flex items-center space-x-8">
-                    {PAGE_ROUTES.map((route) => (
-                        <Link
-                            key={route.order}
-                            href={route.path}
-                            className="group relative inline-block font-extrabold transition-all duration-300 px-1.5"
-                        >
-                            {
-                                location === route.path && (
-                                    <Image
-                                        src={`/images/svg/${route.pageName.toLowerCase()}-blur.svg`}
-                                        alt={`${route.pageName} blur effect`}
-                                        fill={true}
-                                        objectFit="cover"
-                                    />
-                                )
-                            }
-                            <span className={`relative
-                                ${location === route.path
-                                    ? 'text-hover-gradient'
-                                    : 'group-hover:text-hover-gradient'
+                <div className="flex items-center space-x-3">
+                    {/* Navigation Menu */}
+                    <div className="hidden md:flex space-x-5">
+                        {PAGE_ROUTES.map((route) => (
+                            <Link
+                                key={route.order}
+                                href={route.path}
+                                className="group relative inline-block font-extrabold transition-all duration-300 px-1.5"
+                            >
+                                <span className={`relative
+                                    ${location === route.path
+                                        ? 'text-hover-gradient'
+                                        : 'group-hover:text-hover-gradient'
+                                    }
+                                `}>
+                                    {route.pageName}
+                                </span>
+                                {
+                                    location === route.path && (
+                                        <Image
+                                            src={`/images/svg/${route.pageName.toLowerCase()}-blur.svg`}
+                                            alt={`${route.pageName} blur effect`}
+                                            fill={true}
+                                            style={{ objectFit: 'cover' }}
+                                        />
+                                    )
                                 }
-                            `}>
-                                {route.pageName}
-                            </span>
-                        </Link>
-                    ))}
-                    <Settings className="w-5 h-5 transition-colors duration-300 hover:text-hover-gradient" />
-                </div>
+                            </Link>
+                        ))}
+                    </div>
 
-
-                <div className="md:hidden flex items-center space-x-3 z-3">
+                    {/* Mobile Navigation Menu */}
+                    <div className="flex md:hidden">{DropDownSimple(dropDownList)}</div>
                     <Settings className="w-5 h-5 transition-colors duration-300 hover:text-hover-gradient" />
-                    <button
-                        onClick={toggleMenu}
-                        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-                        className="p-2 rounded-full transition-colors duration-300 hover:text-hover-gradient"
-                    >
-                        {isMenuOpen ? (
-                            <X className="h-6 w-6" />
-                        ) : (
-                            <Menu className="h-6 w-6" />
-                        )}
-                    </button>
                 </div>
             </nav>
-
-            {/* Mobile Navigation Menu */}
-            {/* <div
-                className={`absolute mt-20 md:hidden inset-0 z-2 transition-transform duration-300 ease-in-out
-                    ${isMenuOpen
-                        ? 'transform translate-x-0'
-                        : 'transform translate-x-full'
-                    }`
-                }
-            >
-                <div className="container mx-auto px-6 py-4 flex flex-col space-y-8">
-                    {PAGE_ROUTES.map((route) => (
-                        <Link
-                            key={route.order}
-                            href={route.path}
-                            className="group relative inline-block font-extrabold transition-all duration-300 px-1.5"
-                        >
-                            <Image
-                                src={`/images/svg/${route.pageName.toLowerCase()}-blur.svg`}
-                                alt={`${route.pageName} blur effect`}
-                                fill={true}
-                                objectFit="cover"
-                                className="relative inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            />
-                            <span className="relative group-hover:text-hover-gradient">{route.pageName}</span>
-                        </Link>
-                    ))}
-                </div>
-            </div> */}
         </header>
     );
 }

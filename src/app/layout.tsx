@@ -23,11 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${firaSans.className}`}>
-      <body className="w-screen">
-        <div className="flex flex-col min-h-screen">
+    <html lang="en">
+      <body className={`w-screen ${firaSans.className}`}>
+        <div className="max-w-[1024px] w-full flex justify-center">
           <Navbar />
-          {children}
+          <div className="w-full flex justify-center pt-[72]">
+            {children}
+          </div>
         </div>
       </body>
     </html>
