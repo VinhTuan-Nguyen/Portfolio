@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`w-screen ${firaSans.className}`}>
+      <body className={`w-screen ${firaSans.className} flex justify-center`}>
         <div className="max-w-[1024px] w-full flex justify-center">
           <Navbar />
           <div className="w-full flex justify-center pt-[72]">

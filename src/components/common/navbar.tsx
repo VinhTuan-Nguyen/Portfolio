@@ -10,7 +10,7 @@ function buildNavDropDownList(location: string): DropDownSimpleProps {
     const props = initDropDownSimpleProps
     // Config Button
     props.button.icon = <Menu className="h-6 w-6" />
-    props.button.classes = ['hover:text-hover-gradient']
+    props.button.classes = ['hover:text-custom']
 
     // Create Menu List
     props.menu.menuList = PAGE_ROUTES.map((route, index) => (
@@ -24,8 +24,8 @@ function buildNavDropDownList(location: string): DropDownSimpleProps {
         >
             <span className={`relative px-1.5
                 ${location === route.path
-                    ? 'text-hover-gradient'
-                    : 'hover:text-hover-gradient'}
+                    ? 'text-custom'
+                    : 'hover:text-custom'}
             `}>
                 {route.pageName}
                 {location === route.path && (
@@ -62,8 +62,8 @@ export default function Navbar() {
                             >
                                 <span className={`relative
                                     ${location === route.path
-                                        ? 'text-hover-gradient'
-                                        : 'group-hover:text-hover-gradient'
+                                        ? 'text-custom'
+                                        : 'group-hover:text-custom'
                                     }
                                 `}>
                                     {route.pageName}
@@ -84,7 +84,7 @@ export default function Navbar() {
 
                     {/* Mobile Navigation Menu */}
                     <div className="flex md:hidden">{DropDownSimple(dropDownList)}</div>
-                    <Settings className="w-5 h-5 transition-colors duration-300 hover:text-hover-gradient" />
+                    <Settings className="w-5 h-5 transition-colors duration-300 hover:text-custom" />
                 </div>
             </nav>
         </header>

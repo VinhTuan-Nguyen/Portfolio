@@ -6,7 +6,7 @@
 }
 
 @theme {
-  --color-hover-gradient: rgba(162, 56, 255, 1);
+  --color-custom: #A238FF;
 }
 
 @theme inline {
@@ -14,13 +14,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-fira-sans);
 }
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
 
 html {
   --default-font-family: var(--font-sans);

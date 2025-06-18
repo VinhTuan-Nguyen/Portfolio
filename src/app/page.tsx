@@ -1,6 +1,7 @@
 'use client';
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,10 +17,8 @@ export default function Home() {
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis iure quasi laudantium suscipit voluptatem veritatis beatae
           </p>
           <div className="pt-6 flex space-x-6">
-            <button className="border rounded-md text-hover-gradient p-1">
-              Learn more about me
-            </button>
-            <button className="flex items-center justify-center rounded-md bg-[#A238FF] p-1 shadow-lg shadow-purple-700/50">
+            <Link href="/about" className="border rounded-md text-custom p-1">Learn more about me</Link>
+            <button className="flex items-center justify-center rounded-md bg-[#A238FF] p-1 shadow-lg shadow-purple-700/50 cursor-pointer">
               Download resume
             </button>
           </div>
