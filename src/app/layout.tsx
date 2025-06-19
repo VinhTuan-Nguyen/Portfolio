@@ -25,6 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${firaSans.className}`}>
+      <head>
+        <meta name="google-site-verification" content="w9CwguktKUu2wLtA19QQZYsbHpV_-A6Mu2sECfrid8A" />
+      </head>
       <body>
         <div className="flex flex-col min-h-screen">
           <Navbar />

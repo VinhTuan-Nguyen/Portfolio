@@ -6,7 +6,7 @@
 }
 
 @theme {
-  --color-custom: #A238FF;
+  --color-custom: #a238ff;
   --color-custom-dark: #222323;
 }
 
@@ -14,6 +14,31 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-fira-sans);
+}
+
+@layer components {
+  .custom-background::before {
+    content: "";
+    z-index: -1;
+    background: url(/images/svg/vector-1.svg) center / cover no-repeat;
+    width: 150%;
+    height: 75%;
+    display: block;
+    position: absolute;
+    top: 65%;
+    right: 10%;
+  }
+
+  .custom-background::after {
+    content: "";
+    z-index: -1;
+    background: url(/images/svg/vector-2.svg) center / cover no-repeat;
+    width: 125%;
+    height: 125%;
+    display: block;
+    position: absolute;
+    top: 20%;
+  }
 }
 
 html {
@@ -35,7 +60,7 @@ body::before {
   width: 100%;
   padding-top: 47.23%;
   position: fixed;
-  background: url("~/images/svg/header-blur.svg") center / cover no-repeat;
+  background: url("/images/svg/header-blur.svg") center / cover no-repeat;
   z-index: -1;
 }
 
@@ -45,6 +70,6 @@ body::after {
   width: 100%;
   padding-bottom: 30%;
   position: fixed;
-  background: url("~/images/svg/footer-blur.svg") center / cover no-repeat;
+  background: url("/images/svg/footer-blur.svg") center / cover no-repeat;
   z-index: -1;
 }

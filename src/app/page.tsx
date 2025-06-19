@@ -23,7 +23,8 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="bg-white min-w-[250] h-[250] md:min-w-[300] md:h-[300] lg:min-w-[400] lg:h-[400] rounded-full"></div>
+        {/* Avatar */}
+        <div className="relative bg-white min-w-[250] h-[250] md:min-w-[300] md:h-[300] lg:min-w-[400] lg:h-[400] rounded-full custom-background"></div>
       </section>
       <Image src="/images/svg/page-break.svg" width={500} height={30} alt="Page break section" />
       <section className="w-full flex flex-col items-center">

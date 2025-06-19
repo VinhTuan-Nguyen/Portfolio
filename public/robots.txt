@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://khanh-doan-digital.github.io/sitemap.xml

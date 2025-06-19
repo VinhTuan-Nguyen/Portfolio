@@ -65,7 +65,7 @@ export default function Navbar() {
         };
     }, []);
     return (
-        <header className={`fixed w-screen transition-all duration-300
+        <header className={`fixed z-50 w-screen transition-all duration-300
             ${isScrolled
                 ? 'shadow-md bg-custom-dark/95 py-4'
                 : 'bg-transparent py-5'
