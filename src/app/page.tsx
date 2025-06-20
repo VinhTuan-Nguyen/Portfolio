@@ -29,10 +29,10 @@ export default function Home() {
       <Image src="/images/svg/page-break.svg" width={500} height={30} alt="Page break section" />
       <section className="w-full flex flex-col items-center">
         <h2 className="font-semibold text-xl md:text-2xl lg:text-3xl pt-2 pb-15">My Project</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap3 sm:gap-5 md:gap-7 w-full space-y-5 sm:space-y-0 px-5 sm:px-3">
-          <div className="bg-white h-100 w-full rounded-2xl"></div>
-          <div className="bg-white h-100 w-full rounded-2xl"></div>
-          <div className="bg-white h-100 w-full rounded-2xl"></div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap3 sm:gap-5 md:gap-7 w-full space-y-5 sm:space-y-0 px-5 sm:px-3">
+          <div className="bg-white h-150 w-full rounded-2xl"></div>
+          <div className="bg-white h-150 w-full rounded-2xl"></div>
+          <div className="bg-white h-150 w-full rounded-2xl"></div>
         </div>
       </section>
     </div>
