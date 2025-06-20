@@ -28,14 +28,12 @@ export default function RootLayout({
       <head>
         <meta name="google-site-verification" content="w9CwguktKUu2wLtA19QQZYsbHpV_-A6Mu2sECfrid8A" />
       </head>
-      <body>
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main className="max-w-[1200px] w-full flex justify-center pt-[72]">
-            {children}
-          </main>
-          <Footer />
-        </div>
+      <body className="overflow-x-hidden min-h-screen">
+        <Navbar />
+        <main className="justify-center pt-[72] overflow-x-hidden 2xl:overflow-x-visible">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

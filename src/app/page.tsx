@@ -5,10 +5,10 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="px-[2%] flex flex-col items-center">
+    <div className="container w-full mx-auto flex flex-col items-center px-2 sm:px:5 md:px-10 lg:px-20">
       <section
         id='hero-section'
-        className="w-full flex flex-col-reverse md:flex-row justify-between items-center md:items-start py-10 md:py-20 lg:py-30 gap-10">
+        className="w-full flex flex-col-reverse md:flex-row justify-between items-center md:items-start py-10 md:py-20 lg:py-30 gap-10 xl:gap-60">
         <div className="space-y-5 flex flex-col items-center md:items-start">
           <h1 className="font-extrabold text-2xl/relaxed md:text-5xl/relaxed lg:text-6xl/normal text-center md:text-left">
             Nguyen Ngoc<br className="hidden md:block" /> Khanh Doan
@@ -30,11 +30,6 @@ export default function Home() {
       <section className="w-full flex flex-col items-center">
         <h2 className="font-semibold text-xl md:text-2xl lg:text-3xl pt-2 pb-15">My Project</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap3 sm:gap-5 md:gap-7 w-full space-y-5 sm:space-y-0 px-5 sm:px-3">
-          <div className="bg-white h-100 w-full rounded-2xl"></div>
-          <div className="bg-white h-100 w-full rounded-2xl"></div>
-          <div className="bg-white h-100 w-full rounded-2xl"></div>
-          <div className="bg-white h-100 w-full rounded-2xl"></div>
-          <div className="bg-white h-100 w-full rounded-2xl"></div>
           <div className="bg-white h-100 w-full rounded-2xl"></div>
           <div className="bg-white h-100 w-full rounded-2xl"></div>
           <div className="bg-white h-100 w-full rounded-2xl"></div>

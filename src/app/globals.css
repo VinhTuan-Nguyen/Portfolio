@@ -21,8 +21,8 @@
     content: "";
     z-index: -1;
     background: url(/images/svg/vector-1.svg) center / cover no-repeat;
-    width: 150%;
-    height: 75%;
+    width: 141%;
+    height: 66%;
     display: block;
     position: absolute;
     top: 65%;
@@ -31,20 +31,32 @@
 
   .custom-background::after {
     content: "";
-    z-index: -1;
+    z-index: -2;
     background: url(/images/svg/vector-2.svg) center / cover no-repeat;
-    width: 125%;
-    height: 125%;
+    width: 170%;
+    height: 122%;
     display: block;
     position: absolute;
-    top: 20%;
+    top: 10%;
+    left: -10%;
   }
+}
+
+* {
+  /* outline: 1px solid red; */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 html {
   --default-font-family: var(--font-sans);
   --default-font-size: 16px;
   --default-line-height: 1.5;
+  box-sizing: border-box;
 }
 
 body {
