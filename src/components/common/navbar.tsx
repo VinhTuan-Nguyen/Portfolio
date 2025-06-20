@@ -36,7 +36,7 @@ export default function Navbar() {
                 : 'bg-transparent py-4'
             }
         `}>
-            <nav className="container mx-auto flex justify-between items-center px-2 sm:px:5 md:px-10 lg:px-20">
+            <nav className="container mx-auto flex justify-between items-center px-10 md:px-10 lg:px-20">
                 <Link href="/" className="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold transition-colors duration-300">
                     Digital Marketing
                 </Link>
