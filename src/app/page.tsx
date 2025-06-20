@@ -18,7 +18,7 @@ export default function Home() {
           </p>
           <div className="pt-6 flex space-x-6">
             <Link href="/about" className="border rounded-md text-custom p-1">Learn more about me</Link>
-            <button className="flex items-center justify-center rounded-md bg-[#A238FF] p-1 shadow-lg shadow-purple-700/50 cursor-pointer">
+            <button className="flex items-center justify-center rounded-md p-1 shadow-[0_0_30px_#A238FF] cursor-pointer bg-custom">
               Download resume
             </button>
           </div>
@@ -35,6 +35,6 @@ export default function Home() {
           <div className="bg-white h-150 w-full rounded-2xl"></div>
         </div>
       </section>
-    </div>
+    </div >
   );
 }

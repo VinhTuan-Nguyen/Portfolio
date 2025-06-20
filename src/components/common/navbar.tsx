@@ -1,7 +1,6 @@
 'use client'
 import { PAGE_ROUTES } from "@/lib/contants/page-router";
 import { Menu, Settings } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -37,7 +36,7 @@ export default function Navbar() {
             }
         `}>
             <nav className="container mx-auto flex justify-between items-center px-10 md:px-10 lg:px-20">
-                <Link href="/" className="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold transition-colors duration-300">
+                <Link href="/" className="text-xl md:text-3xl lg:text-4xl font-bold transition-colors duration-300">
                     Digital Marketing
                 </Link>
                 <div className="flex items-center space-x-3">
@@ -49,19 +48,14 @@ export default function Navbar() {
                                 href={route.path}
                                 className="sm:text-xs md:text-xl lg:text-2xl relative inline-block font-extrabold transition-all duration-300 px-1.5"
                             >
-                                <span className={`relative ${location === route.path ? 'text-custom' : 'hover:text-custom'}`}>
+                                <span className={`relative
+                                    ${location === route.path
+                                        ? 'text-custom text-shadow-[0_0_6px_#A238FF]'
+                                        : 'hover:text-custom'}
+                                    `}
+                                >
                                     {route.pageName}
                                 </span>
-                                {
-                                    location === route.path && (
-                                        <Image
-                                            src={`/images/svg/${route.pageName.toLowerCase()}-blur.svg`}
-                                            alt={`${route.pageName} blur effect`}
-                                            fill={true}
-                                            style={{ objectFit: 'cover' }}
-                                        />
-                                    )
-                                }
                             </Link>
                         ))}
                     </div>
