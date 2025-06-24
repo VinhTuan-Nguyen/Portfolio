@@ -10,33 +10,37 @@ export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
-    const toggleMenu = (): void => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     // Add scroll event listener
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 5) {
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
-        };
+        const handleScroll = () => setIsScrolled(window.scrollY > 5);
+
+        handleScroll();
 
         window.addEventListener('scroll', handleScroll);
-        return () => { window.removeEventListener('scroll', handleScroll); }
+
+        // Clean up
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            console.log('unmounted')
+        }
     }, []);
 
     return (
         <header className={`w-full mx-auto fixed z-50 transition-all duration-300
             ${isScrolled
-                ? 'shadow-xl shadow-custom/50 bg-custom-dark/95 py-5 md:py-6 lg:py-8 rounded-b-full'
+                ? 'shadow-xl shadow-custom/50 bg-custom-dark/95 py-1 md:py-6 lg:py-8 rounded-b-full'
                 : 'bg-transparent py-4'
             }
         `}>
-            <nav className="container mx-auto flex justify-between items-center px-10 md:px-10 lg:px-20">
-                <Link href="/" className="text-xl md:text-3xl lg:text-4xl font-bold transition-colors duration-300">
+            <nav className={`container mx-auto flex justify-between items-center px-10 md:px-10 lg:px-20`}>
+                <Link
+                    href="/"
+                    className={`md:text-3xl lg:text-4xl font-bold transition-all duration-300
+                        ${isScrolled ? 'text-sm' : 'text-md'}
+                    `}
+                >
                     Digital Marketing
                 </Link>
                 <div className="flex items-center space-x-3">
