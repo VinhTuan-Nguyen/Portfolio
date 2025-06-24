@@ -1,8 +1,12 @@
+'use client';
+import { useLanguage } from "@/hooks/useLanguage";
 import { PAGE_ROUTES } from "@/lib/contants/page-router";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
+    const { transform } = useLanguage()
+
     return (
         <footer className="py-[5%]">
             <div className="flex flex-col items-center mx-auto container space-y-5 px-2 sm:px:5 md:px-10 lg:px-20">
@@ -22,7 +26,7 @@ export default function Footer() {
                                 href={route.path}
                                 className="text-lg md:text-xl inline-block font-extrabold hover:text-custom"
                             >
-                                {route.pageName}
+                                {transform(route.pageName)}
                             </Link>
                         ))}
                     </div>

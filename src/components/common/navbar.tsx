@@ -1,5 +1,6 @@
 'use client'
-import { Language, useLanguage } from "@/contexts/LanguageContext";
+import { Language } from "@/contexts/LanguageContext";
+import { useLanguage } from "@/hooks/useLanguage";
 import { PAGE_ROUTES } from "@/lib/contants/page-router";
 import { Languages, Menu, Settings, X } from "lucide-react";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
-    const { lang, changeLanguage } = useLanguage();
+    const { lang, transform, changeLanguage } = useLanguage();
     const location = usePathname()
     const [menuOpen, setMenuOpen] = useState(false);
     const [settingMenuOpen, setSettingMenuOpen] = useState(false);
@@ -81,7 +82,7 @@ export default function Navbar() {
                                         : 'hover:text-custom'}
                                     `}
                                 >
-                                    {route.pageName}
+                                    {transform(route.pageName)}
                                 </span>
                             </Link>
                         ))}
@@ -113,7 +114,7 @@ export default function Navbar() {
                                 }
                             `}
                         >
-                            <div className={`flex flex-row space-x-5 rounded-lg bg-custom-dark/95 p-5`} role="none">
+                            <div className={`flex flex-row space-x-5 rounded-lg bg-custom-dark/95 p-5 w-max`} role="none">
                                 {PAGE_ROUTES.map((route) => (
                                     <Link
                                         onClick={() => setMenuOpen(false)}
@@ -127,7 +128,7 @@ export default function Navbar() {
                                                 : 'hover:text-custom'}
                                             `}
                                         >
-                                            {route.pageName}
+                                            {transform(route.pageName)}
                                         </span>
                                     </Link>
                                 ))}
@@ -168,9 +169,9 @@ export default function Navbar() {
                             <ul className="space-y-5 rounded-lg bg-custom-dark/95 p-5">
                                 <li
                                     onClick={() => toggleLanguage()}
-                                    className="text-sm md:text-xl cursor-pointer hover:text-custom flex items-center"
+                                    className="text-sm md:text-xl cursor-pointer hover:text-custom flex items-center space-x-2"
                                 >
-                                    <Languages className="w-6 h-6" /><span>{lang === Language.EN ? ': Vi' : ': En'}</span>
+                                    <Languages className="w-6 h-6" /><span>{lang === Language.EN ? 'Switch to Vi' : 'Chuyển sang En'}</span>
                                 </li>
                             </ul>
                         </div>

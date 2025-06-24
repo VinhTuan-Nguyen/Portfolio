@@ -2,25 +2,25 @@ export const PAGE_ROUTES = [
     {
         order: 0,
         path: "/",
-        pageName: "Home",
+        pageName: "page.home",
         filter: "home-blur.svg"
     },
     {
         order: 1,
         path: "/project",
-        pageName: "Project",
+        pageName: "page.project",
         filter: "project-blur.svg"
     },
     {
         order: 3,
         path: "/about",
-        pageName: "About",
+        pageName: "page.about",
         filter: "about-blur.svg"
     },
     {
         order: 2,
         path: "/contact",
-        pageName: "Contact",
+        pageName: "page.contact",
         filter: "contact-blur.svg"
     }
 ]

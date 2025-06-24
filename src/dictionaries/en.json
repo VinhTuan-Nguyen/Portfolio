@@ -1,3 +1,6 @@
 {
-    "page.home": "Home"
+    "page.home": "Home",
+    "page.project": "Project",
+    "page.about": "About",
+    "page.contact": "Contact"
 }

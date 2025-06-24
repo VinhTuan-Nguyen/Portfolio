@@ -1,31 +1,24 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import EN from '@/dictionaries/en.json' assert { type: 'json' };
+import VI from '@/dictionaries/vi.json' assert { type: 'json' };
 
 export enum Language { EN = "en", VI = "vi" }
+
+export const LANGCONTEXT = createContext<LanguageContextType | undefined>(undefined);
 
 const LANGUAGES = Object.values(Language)
 
 interface LanguageContextType {
     lang: Language;
-    transform: (key: string, replace?: { [index: string]: string }) => Promise<string>;
+    transform: (key: string, replace?: { [index: string]: string }) => string;
     changeLanguage: (lang: Language) => void;
 }
 
 interface I18NFormat { [key: string]: string }
 
-const LANGCONTEXT = createContext<LanguageContextType | undefined>(undefined);
-
-const dictionaries = {
-    en: (): Promise<I18NFormat> => import('@/dictionaries/en.json').then((module) => module.default as I18NFormat),
-    vi: (): Promise<I18NFormat> => import('@/dictionaries/vi.json').then((module) => module.default as I18NFormat),
-}
-
-export const useLanguage = () => {
-    const context = useContext(LANGCONTEXT);
-    if (context !== undefined) return context;
-    throw new Error('useLanguage must be used within a LanguageProvider');
-};
+const dictionaries = { en: EN as I18NFormat, vi: VI as I18NFormat }
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const getInitialLanguage = (): Language => {
@@ -41,9 +34,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     const changeLanguage = (lang: Language) => setLang(lang);
 
-    const transform = async (key: string, replace?: { [key: string]: string }): Promise<string> => {
-        const dict = await dictionaries[lang]();
-        let value = dict[key];
+    const transform = (key: string, replace?: { [index: string]: string }): string => {
+        let value = dictionaries[lang][key];
 
         if (!value) {
             console.warn(`dict missing for key: ${key} in language: ${lang}`);
@@ -51,8 +43,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         }
 
         if (replace) {
-            for (const rKey in replace) {
-                value = value.replace(new RegExp(`{${rKey}}`, 'g'), replace[rKey]);
+            for (const key in replace) {
+                value = value.replace(new RegExp(`{${key}}`, 'g'), replace[key]);
             }
         }
 

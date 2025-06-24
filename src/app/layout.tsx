@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import ClientOnly from "@/components/common/client-only";
 
 
 
@@ -32,11 +33,13 @@ export default function RootLayout({
       </head>
       <body className="overflow-x-hidden min-h-screen">
         <LanguageProvider>
-          <Navbar />
-          <main className="justify-center pt-[72] overflow-x-hidden 2xl:overflow-x-visible">
-            {children}
-          </main>
-          <Footer />
+          <ClientOnly>
+            <Navbar />
+            <main className="justify-center pt-[72] overflow-x-hidden 2xl:overflow-x-visible">
+              {children}
+            </main>
+            <Footer />
+          </ClientOnly>
         </LanguageProvider>
       </body>
     </html>
