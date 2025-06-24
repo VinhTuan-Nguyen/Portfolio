@@ -1,16 +1,21 @@
 'use client'
+import { Language, useLanguage } from "@/contexts/LanguageContext";
 import { PAGE_ROUTES } from "@/lib/contants/page-router";
-import { Menu, Settings } from "lucide-react";
+import { Languages, Menu, Settings, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
+    const { lang, changeLanguage } = useLanguage();
     const location = usePathname()
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [settingMenuOpen, setSettingMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+    const toggleLanguage = () => {
+        changeLanguage(lang === Language.EN ? Language.VI : Language.EN);
+    };
 
     // Add scroll event listener
     useEffect(() => {
@@ -23,9 +28,27 @@ export default function Navbar() {
         // Clean up
         return () => {
             window.removeEventListener('scroll', handleScroll)
-            console.log('unmounted')
         }
     }, []);
+
+    useEffect(() => {
+        setMenuOpen(false)
+        setSettingMenuOpen(false)
+    }, [location])
+
+    useEffect(() => {
+        if (menuOpen) {
+            setMenuOpen(true)
+            setSettingMenuOpen(false)
+        }
+    }, [menuOpen])
+
+    useEffect(() => {
+        if (settingMenuOpen) {
+            setMenuOpen(false)
+            setSettingMenuOpen(true)
+        }
+    }, [settingMenuOpen])
 
     return (
         <header className={`w-full mx-auto fixed z-50 transition-all duration-300
@@ -65,31 +88,93 @@ export default function Navbar() {
                     </div>
 
                     {/* Mobile Navigation Menu */}
-                    <div className="flex md:hidden">
-                        <div className="relative inline-block text-left">
-                            <button
-                                onClick={() => toggleMenu()}
-                                id="menu-button"
-                                type="button"
-                                aria-expanded="true"
-                                aria-haspopup="true"
-                                className={`inline-flex w-full justify-center px-3 py-2`}
-                            ><Menu className="w-6 h-6"></Menu></button>
-                            {isMenuOpen && (
-                                <div
-                                    role="menu"
-                                    tabIndex={-1}
-                                    aria-orientation="vertical"
-                                    aria-labelledby="menu-button"
-                                    className={`absolute mt-2 origin-top-right`}
-                                >
-                                    <div className={`absolute flex flex-col space-y-3 rounded-md text-center`} role="none">
-                                    </div>
-                                </div>
-                            )}
+                    <div className="relative inline-block text-center md:hidden">
+                        <button
+                            onClick={() => setMenuOpen(!menuOpen)}
+                            id="menu-button"
+                            type="button"
+                            aria-expanded="true"
+                            aria-haspopup="true"
+                            className={`inline-flex w-full justify-center px-3 py-2 hover:text-custom transition-colors duration-200`}
+                        >
+                            <Menu className={`w-6 h-6 ${menuOpen ? 'hidden' : ''}`}></Menu>
+                            <X className={`w-6 h-6 ${!menuOpen ? 'hidden' : ''}`}></X>
+                        </button>
+                        <div
+                            role="menu"
+                            tabIndex={-1}
+                            aria-orientation="horizontal"
+                            aria-labelledby="menu-button"
+                            className={`absolute origin-top-right transition transform right-0
+                                ${isScrolled ? 'translate-y-2' : 'translate-x-0'}
+                                ${menuOpen
+                                    ? 'ease-in duration-150 opacity-100 scale-100'
+                                    : 'ease-out duration-100 opacity-0 scale-30'
+                                }
+                            `}
+                        >
+                            <div className={`flex flex-row space-x-5 rounded-lg bg-custom-dark/95 p-5`} role="none">
+                                {PAGE_ROUTES.map((route) => (
+                                    <Link
+                                        onClick={() => setMenuOpen(false)}
+                                        key={route.order}
+                                        href={route.path}
+                                        className="text-sm md:text-xl relative inline-block transition-all duration-300"
+                                    >
+                                        <span className={`relative
+                                                ${location === route.path
+                                                ? 'text-custom text-shadow-[0_0_6px_#A238FF]'
+                                                : 'hover:text-custom'}
+                                            `}
+                                        >
+                                            {route.pageName}
+                                        </span>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
                     </div>
-                    <Settings className="w-5 h-5 transition-colors duration-300 hover:text-custom" />
+
+                    {/* Setting Menu */}
+                    <div className="relative inline-block text-center">
+                        <button
+                            onClick={() => setSettingMenuOpen(!settingMenuOpen)}
+                            id="setting-button"
+                            type="button"
+                            aria-expanded="true"
+                            aria-haspopup="true"
+                            className={`inline-flex w-full justify-center px-3 py-2 hover:text-custom transition-colors duration-200`}
+                        >
+
+                            <Settings className={`w-6 h-6 ${settingMenuOpen ? 'hidden' : ''}`} />
+                            <X className={`w-6 h-6 ${!settingMenuOpen ? 'hidden' : ''}`} />
+                        </button>
+                        <div
+                            role="menu"
+                            tabIndex={-1}
+                            aria-orientation="vertical"
+                            aria-labelledby="setting-button"
+                            className={`absolute origin-top-right transition transform right-0 w-max
+                                ${settingMenuOpen
+                                    ? 'ease-in duration-150 opacity-100 scale-100'
+                                    : 'ease-out duration-100 opacity-0 scale-30'
+                                }
+                                ${isScrolled
+                                    ? 'translate-y-2 md:translate-y-7 lg:translate-y-9'
+                                    : 'translate-x-0'
+                                }
+                            `}
+                        >
+                            <ul className="space-y-5 rounded-lg bg-custom-dark/95 p-5">
+                                <li
+                                    onClick={() => toggleLanguage()}
+                                    className="text-sm md:text-xl cursor-pointer hover:text-custom flex items-center"
+                                >
+                                    <Languages className="w-6 h-6" /><span>{lang === Language.EN ? ': Vi' : ': En'}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>

@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-enum Language { EN = "en", VI = "vi" }
+export enum Language { EN = "en", VI = "vi" }
 
 const LANGUAGES = Object.values(Language)
 

@@ -26,19 +26,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <LanguageProvider>
-      <html lang="en" className={`${firaSans.className}`}>
-        <head>
-          <meta name="google-site-verification" content="w9CwguktKUu2wLtA19QQZYsbHpV_-A6Mu2sECfrid8A" />
-        </head>
-        <body className="overflow-x-hidden min-h-screen">
+    <html lang="en" className={`${firaSans.className}`}>
+      <head>
+        <meta name="google-site-verification" content="w9CwguktKUu2wLtA19QQZYsbHpV_-A6Mu2sECfrid8A" />
+      </head>
+      <body className="overflow-x-hidden min-h-screen">
+        <LanguageProvider>
           <Navbar />
           <main className="justify-center pt-[72] overflow-x-hidden 2xl:overflow-x-visible">
             {children}
           </main>
           <Footer />
-        </body>
-      </html>
-    </LanguageProvider>
+        </LanguageProvider>
+      </body>
+    </html>
   );
 }
