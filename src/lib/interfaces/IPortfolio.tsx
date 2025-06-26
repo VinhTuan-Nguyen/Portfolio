@@ -19,10 +19,10 @@ interface About {
 }
 
 interface Contact {
-    email: string
-    location: string
-    phone: string
-    links: Links
+    email?: string
+    location?: string
+    phone?: string
+    links?: Links
 }
 
 interface Links {

@@ -1,6 +1,20 @@
 {
+    "nav.logo": "Digital Marketing",
     "page.home": "Trang chủ",
     "page.project": "Dự Án",
     "page.about": "Giới Thiệu",
-    "page.contact": "Liên Hệ"
+    "page.contact": "Liên Hệ",
+    "contact.header": "Liên Hệ",
+    "contact.description": "Bạn có ý tưởng gì không? Hãy thoải mái gửi cho tôi một tin nhắn",
+    "contact.card.header": "Liên hệ trực tiếp với tôi qua",
+    "contact.email.header": "Email",
+    "contact.phone.header": "Số điện thoại",
+    "contact.location.header": "Địa chỉ",
+    "contact.input.name": "Tên",
+    "contact.input.company": "Công ty",
+    "contact.input.email": "Email",
+    "contact.input.phone": "Số điện thoại",
+    "contact.input.subject": "Tiêu đề",
+    "contact.input.message": "Nội dung tin nhắn",
+    "contact.input.btn.submit": "Gửi mail"
 }

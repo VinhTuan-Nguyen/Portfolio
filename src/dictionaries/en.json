@@ -1,6 +1,20 @@
 {
+    "nav.logo": "Digital Marketing",
     "page.home": "Home",
     "page.project": "Project",
     "page.about": "About",
-    "page.contact": "Contact"
+    "page.contact": "Contact",
+    "contact.header": "Get In Touch",
+    "contact.description": "Have something in mind? Feel free to send me a message",
+    "contact.card.header": "Contact me directly through",
+    "contact.email.header": "Email",
+    "contact.phone.header": "Phone",
+    "contact.location.header": "Location",
+    "contact.input.name": "Name",
+    "contact.input.company": "Company",
+    "contact.input.email": "Email",
+    "contact.input.phone": "Phone",
+    "contact.input.subject": "Subject",
+    "contact.input.message": "Message",
+    "contact.input.btn.submit": "Submit"
 }

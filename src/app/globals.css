@@ -8,10 +8,11 @@
 @theme {
   --color-custom: #a238ff;
   --color-custom-dark: #222323;
+  --color-custom-gray: #d9d9d9;
+  --color-custom-gray-thin: #b8b8b8;
+  --color-custom-gray-bold: #525252;
   --text-thin: 0.625rem;
   --text-thin--font-weight: 100;
-  --color-gray-thin-custom: #b8b8b8;
-  --color-gray-bold-custom: #525252;
 
 }
 

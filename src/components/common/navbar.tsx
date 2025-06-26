@@ -16,6 +16,7 @@ export default function Navbar() {
 
     const toggleLanguage = () => {
         changeLanguage(lang === Language.EN ? Language.VI : Language.EN);
+        setSettingMenuOpen(false)
     };
 
     // Add scroll event listener
@@ -58,16 +59,16 @@ export default function Navbar() {
                 : 'bg-transparent py-4'
             }
         `}>
-            <nav className={`container mx-auto flex justify-between items-center px-10 md:px-10 lg:px-20`}>
+            <nav className={`container mx-auto flex justify-between items-center px-[5%]`}>
                 <Link
                     href="/"
                     className={`md:text-3xl lg:text-4xl font-bold transition-all duration-300
                         ${isScrolled ? 'text-sm' : 'text-md'}
                     `}
                 >
-                    Digital Marketing
+                    {transform("nav.logo")}
                 </Link>
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-0 md:space-x-3">
                     {/* Navigation Menu */}
                     <div className="hidden md:flex space-x-5">
                         {PAGE_ROUTES.map((route) => (
@@ -114,7 +115,7 @@ export default function Navbar() {
                                 }
                             `}
                         >
-                            <div className={`flex flex-row space-x-5 rounded-lg bg-custom-dark/95 p-5 w-max`} role="none">
+                            <div className={`flex flex-col space-y-5 rounded-lg bg-custom-dark/95 p-5 w-max`} role="none">
                                 {PAGE_ROUTES.map((route) => (
                                     <Link
                                         onClick={() => setMenuOpen(false)}

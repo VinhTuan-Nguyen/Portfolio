@@ -8,7 +8,7 @@ export default function Home() {
   //const { lang } = useLanguage()
 
   return (
-    <div className="container w-full mx-auto flex flex-col items-center px-2 sm:px:5 md:px-10 lg:px-20">
+    <div className="container w-full mx-auto flex flex-col items-center px-[2%]">
       <section
         id='hero-section'
         className="w-full flex flex-col-reverse md:flex-row justify-between items-center md:items-start py-10 md:py-20 lg:py-30 gap-10 xl:gap-60">
